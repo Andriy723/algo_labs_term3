@@ -2,8 +2,12 @@ import unittest
 
 
 def monotone(arr):
+
     if not arr:
         return False
+
+    if len(arr) == 1:
+        return True
 
     direction = arr[1] - arr[0]
 
@@ -28,6 +32,16 @@ class Test(unittest.TestCase):
         self.assertEqual(monotone([1, 2, 33, 4, 35, 24]), False)
     def test_not_monotone_reverse_array(self):
         self.assertEqual(monotone([5, 3, 2, 1, 1, 2]), False)
+
+                        # Test in audience
+    def test_minus_number(self):
+        self.assertEqual(monotone([2, 2, 2, 2, -1]), True)
+    def test_many_same(self):
+        self.assertEqual(monotone([2, 2, 2, 2, 8]), True)
+    def test_one(self):
+        self.assertEqual(monotone([2]), True)
+    def test_empty(self):
+        self.assertEqual(monotone([]), False)
 
 if __name__ == '__main__':
     unittest.main()
