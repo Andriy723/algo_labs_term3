@@ -1,5 +1,5 @@
 import unittest
-from algo_labs_term3.main import BinaryTree
+from algo_labs_term3.src.main import BinaryTree
 
 
 class Test(unittest.TestCase):
