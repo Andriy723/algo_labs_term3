@@ -30,3 +30,14 @@ class Test(unittest.TestCase):
         root.right.right.right = BinaryTree(250)
 
         self.assertFalse(root.is_tree_balanced(root))
+
+    def test_equal_4(self):
+        root = BinaryTree(111)
+        root.left = BinaryTree(121)
+        root.left.left = BinaryTree(100)
+        root.left.left.left = BinaryTree(87)
+        root.right = BinaryTree(156)
+        root.right.right = BinaryTree(200)
+        root.right.right.right = BinaryTree(250)
+
+        self.assertFalse(root.is_tree_balanced(root))
