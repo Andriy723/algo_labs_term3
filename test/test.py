@@ -1,6 +1,6 @@
 import unittest
-from algo_labs_term3.src.main import has_cycle
-from algo_labs_term3.src.main import main
+from src.main import has_cycle
+from src.main import main
 
 
 class TestCycleDetection(unittest.TestCase):
@@ -17,18 +17,13 @@ class TestCycleDetection(unittest.TestCase):
         for Node in graph:
             if not is_visited[Node]:
                 if has_cycle(graph, Node, is_visited, -1):
-                    with open('output1.txt', 'w') as output_txt:
-                        output_txt.write('True')
-        with open('output1.txt', 'w') as output_txt:
-            output_txt.write('False')
+                    return True
+        return False
 
-        with open('output1.txt', 'r') as output_txt:
-            result = output_txt.read()
-
-        self.assertEqual(result, 'False')  # Must be True!
+        self.assertEqual(has_cycle(graph, Node, is_visited, -1), True)
 
     def test_no_cycle(self):
-        with open('input2.txt', 'r') as input_txt:
+        with open('input.txt', 'r') as input_txt:
             graph = {}
             for line in input_txt:
                 Node, *neighbors = map(int, line.split())
@@ -40,12 +35,7 @@ class TestCycleDetection(unittest.TestCase):
         for Node in graph:
             if not is_visited[Node]:
                 if has_cycle(graph, Node, is_visited, -1):
-                    with open('output2.txt', 'w') as output_txt:
-                        output_txt.write('True')
-        with open('output2.txt', 'w') as output_txt:
-            output_txt.write('False')
+                    return True
+        return False
 
-        with open('output2.txt', 'r') as output_txt:
-            result = output_txt.read()
-
-        self.assertEqual(result, 'False')
+        self.assertEqual(has_cycle(graph, Node, is_visited, -1), False)
