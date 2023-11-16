@@ -1,32 +1,17 @@
 import unittest
 
-from src.main import greedy_algorithm, write_to_file, read_input
+from algo_labs_term3.src.main import main
 
 
 class TestCycleDetection(unittest.TestCase):
-    def test_algorithm(self):
-        num_employees, beer = 6, 3
-        beer_preferences = "YNN YNY YNY NYY NYY NYN"
-        result = greedy_algorithm(num_employees, beer, beer_preferences)
+    def test_ordinary_num(self):
+        result = main("input_txt", "output_txt")
         self.assertEqual(result, 2)
 
-    def test_algorithm_negative(self):
-        num_employees, beer = 2, -2
-        beer_preferences = "YN NY"
-        result = greedy_algorithm(num_employees, beer, beer_preferences)
+    def test_big_num(self):
+        result = main("input1_txt", "output1_txt")
+        self.assertEqual(result, 2)
+
+    def test_nothing(self):
+        result = main("input2_txt", "output2_txt")
         self.assertFalse(result)
-
-    def test_read_write(self):
-        employees_num, beer_for_party, likes = read_input("input_txt")
-        write_to_file(
-            "output_txt", greedy_algorithm(employees_num, beer_for_party, likes)
-        )
-
-        with open("output_txt", "r") as output_file:
-            data = int(output_file.read())
-
-        with open("input_txt", "r") as input_file:
-            data1 = str(input_file.read())
-
-        self.assertEqual(data1, "6 3\nYNN YNY YNY NYY NYY NYN")
-        self.assertEqual(data, 2)
